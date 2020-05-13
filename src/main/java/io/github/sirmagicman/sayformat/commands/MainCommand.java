@@ -19,8 +19,18 @@ public class MainCommand extends BaseCommand {
     sender.sendMessage("§9>>>>>>>> §cSay Format §9<<<<<<<<");
     sender.sendMessage("§chelp  §7-  §cShows this page");
     sender.sendMessage("§csay  §7-  §cSends a message as yourself");
-    if (sender.hasPermission("sf.server")) sender.sendMessage("§cserver  §7-  §cSends a message as the server");
-    if (sender.hasPermission("sf.reload")) sender.sendMessage("§creload  §7-  §cReloads the config");
+    if (sender.hasPermission("sf.server")) {
+        sender.sendMessage("§cserver  §7-  §cSends a message as the server");
+    }
+    else {
+        sender.sendMessage("§3Hey! Sorry, but you don't have permission for this command.");
+    }
+    if (sender.hasPermission("sf.reload")) {
+        sender.sendMessage("§creload  §7-  §cReloads the config");
+    }
+    else {
+        sender.sendMessage("§3Hey! Sorry, but you don't have permission for this command.");
+    }
     }
 
     @Subcommand("reload")
