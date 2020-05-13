@@ -1,0 +1,8 @@
+#Plugin configuration below
+
+#Changes 'say' sent from console
+server: "&8[&bServer&8]&r "
+
+#Changes 'say' sent from players
+#Use %PLAYER% to set the player's name
+player: "&7[&a%PLAYER%&7]&r "

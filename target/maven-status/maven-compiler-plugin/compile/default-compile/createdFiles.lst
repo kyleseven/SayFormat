@@ -1,0 +1,4 @@
+io\github\sirmagicman\sayformat\config\MainConfig.class
+io\github\sirmagicman\sayformat\commands\MainCommand.class
+io\github\sirmagicman\sayformat\config\ConfigLoader.class
+io\github\sirmagicman\sayformat\SayFormat.class
