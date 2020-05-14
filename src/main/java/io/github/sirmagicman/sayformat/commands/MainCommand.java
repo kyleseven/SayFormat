@@ -42,6 +42,12 @@ public class MainCommand extends BaseCommand {
         server.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, serverHover.create()));
         server.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/server "));
 
+        //SudoSay hover chat and click
+        TextComponent sudoSay = new TextComponent("§assay  §3-  §9Forces a player to run 'say'");
+        ComponentBuilder sudoSayHover = new ComponentBuilder("").append("Use command").color(ChatColor.DARK_AQUA);
+        sudoSay.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, sudoSayHover.create()));
+        sudoSay.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/ssay "));
+
         //Reload hover chat and click
         TextComponent reload = new TextComponent("§areload  §3-  §9Reloads the config");
         ComponentBuilder reloadHover = new ComponentBuilder("").append("Run command").color(ChatColor.DARK_AQUA);
@@ -63,6 +69,12 @@ public class MainCommand extends BaseCommand {
         } else {
             sender.sendMessage("§3Hey! Sorry, but you don't have permission to use this command.");
         }
+        if (sender.hasPermission("sf.sudosay")) { //Check for SudoSay permission
+            sender.spigot().sendMessage(sudoSay);
+        }
+        else {
+            sender.sendMessage("§3Hey! Sorry, but you don't have permission to use this command.");
+        }
         if (sender.hasPermission("sf.reload")) { //Check for reload permission
             sender.spigot().sendMessage(reload);
         } else {
@@ -70,17 +82,6 @@ public class MainCommand extends BaseCommand {
         }
         sender.spigot().sendMessage(version);
     }
-
-    //Server command
-    @Subcommand("server")
-    @CommandAlias("server|serv")
-    @Description("Run 'say' as the server")
-    @CommandPermission("sf.server")
-    public void server(CommandSender sender, String message) {
-        String prefix = MainConfig.getInstance().getServer();
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + message));
-    }
-
     //TODO - Add function to run as another player
     //Say command
     @Subcommand("say")
@@ -95,6 +96,38 @@ public class MainCommand extends BaseCommand {
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + message));
         } else {
             server(sender, message);
+        }
+    }
+
+    //Server command
+    @Subcommand("server")
+    @CommandAlias("server|serv")
+    @Description("Run 'say' as the server")
+    @CommandPermission("sf.server")
+    public void server(CommandSender sender, String message) {
+        String prefix = MainConfig.getInstance().getServer();
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + message));
+    }
+
+    //Sudo Say
+    @Subcommand("sudosay")
+    @CommandAlias("sudosay|ssay")
+    @Description("Force another player to run 'say'")
+    @CommandPermission("sf.sudosay")
+    public void sudoSay(CommandSender sender, String message) {
+        String[] split = message.split(" ");
+        String newMessage = null;
+        Player target = null;
+        for (Player player: Bukkit.getOnlinePlayers()) {
+            if (split[0].equalsIgnoreCase(ChatColor.stripColor(player.getName())) || split[0].equalsIgnoreCase(ChatColor.stripColor(player.getDisplayName()))) target = player;
+        }
+        for (int i = 1; i < split.length; i++) {
+            newMessage = split[i] + " ";
+        }
+        if (target != null) {
+            target.performCommand("say " + newMessage);
+        } else {
+            sender.sendMessage("Player not found");
         }
     }
 
