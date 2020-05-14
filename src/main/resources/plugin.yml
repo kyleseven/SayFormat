@@ -2,5 +2,6 @@ name: SayFormat
 version: ${project.version}
 main: io.github.sirmagicman.sayformat.SayFormat
 api-version: 1.13
-authors: [SirMagicMan]
+author: SirMagicMan
 description: A plugin to format the outcome of '/say'
+website: https://www.spigotmc.org/resources/say-format.78764/

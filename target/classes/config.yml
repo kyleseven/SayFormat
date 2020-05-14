@@ -1,8 +1,8 @@
 #Plugin configuration below
 
 #Changes 'say' sent from console
-server: "&8[&bServer&8]&r "
+server: "&8[&b&lServer&8]&c "
 
 #Changes 'say' sent from players
 #Use %PLAYER% to set the player's name
-player: "&7[&a%PLAYER%&7]&r "
+player: "&8[&a%PLAYER%&8]&r "
