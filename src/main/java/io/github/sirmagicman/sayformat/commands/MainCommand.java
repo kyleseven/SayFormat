@@ -19,7 +19,7 @@ public class MainCommand extends BaseCommand {
     @Description("Shows this page")
     public void help(CommandSender sender) {
         //Title hover chat
-        TextComponent title = new TextComponent("§a>>>>>>>> §cSay Icon §a<<<<<<<<");
+        TextComponent title = new TextComponent("§a>>>>>>>> §cSay Format §a<<<<<<<<");
         ComponentBuilder titleHover = new ComponentBuilder("").append("Spigot URL").color(ChatColor.DARK_AQUA);
         title.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, titleHover.create()));
         title.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/resources/say-format.78764/"));
@@ -130,6 +130,8 @@ public class MainCommand extends BaseCommand {
             sender.sendMessage("Player not found");
         }
     }
+
+    //TODO - Create a command to change the format.
 
     //Reload command
     @Subcommand("reload|rel|r")
