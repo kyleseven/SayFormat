@@ -21,3 +21,7 @@ server: "&8[&b&lServer&8]&c "
 #Use %PLAYER% to set the player's name
 player: "&8[&a%PLAYER%&8]&r "
 ```
+# Permissions
+- `sf.server` 
+- `sf.sudosay`
+- `sf.reload`
